@@ -23,10 +23,10 @@ export default function SwiperCarousel({ title, images = [] }: SwiperCarouselPro
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
-        className="w-full aspect-video"
+        className="w-full aspect-video rounded-md"
       >
         {images.map((image, index) => (
-          <SwiperSlide key={`${image.src}-${index}`} className="h-full">
+          <SwiperSlide key={`${image.src}-${index}`} className="h-full rounded-lg">
             <Image
               className="w-full h-full object-cover"
               width={image.width}

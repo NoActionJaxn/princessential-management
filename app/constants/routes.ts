@@ -17,7 +17,7 @@ export const ROUTES: RoutesType = {
     key: 'talent'
   },
   contact: {
-    url: '/business-inquiries',
+    url: '/contact',
     label: 'Business Inquiries',
     key: 'business-inquiries'
   }
