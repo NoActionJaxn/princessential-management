@@ -26,7 +26,7 @@ export default function Button({
       className={
         classNames(
           buttonVariant,
-          "space-x-2 px-5 py-3 border rounded-md uppercase cursor-pointer", {
+          "space-x-2 px-5 py-3 border rounded-md uppercase cursor-pointer transition-colors", {
           "cursor-not-allowed opacity-80": disabled,
         }, className)}
       {...rest}>

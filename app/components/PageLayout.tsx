@@ -1,4 +1,4 @@
-import { Meta, Links, ScrollRestoration, Scripts } from "react-router";
+import { Meta, Links, ScrollRestoration, Scripts, useLocation } from "react-router";
 import PageHeader from "./PageHeader";
 import PageContent from "./PageContent";
 import PageFooter from "./PageFooter";
@@ -10,6 +10,10 @@ export interface LayoutProps {
 }
 
 export default function PageLayout({ children }: LayoutProps) {
+  const flushRoutes = ["/"];
+  const {pathname} = useLocation();
+  const isFlush = flushRoutes.includes(pathname);
+
   return (
     <html lang="en">
       <head>
@@ -21,7 +25,7 @@ export default function PageLayout({ children }: LayoutProps) {
       <body>
         <PageWrapper>
           <PageHeader routes={ROUTES} />
-          <PageContent>
+          <PageContent flush={isFlush}>
             {children}
           </PageContent>
           <PageFooter />

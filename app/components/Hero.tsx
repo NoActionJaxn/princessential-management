@@ -2,24 +2,20 @@ import { Link } from "react-router";
 import Button from "./Button";
 import Title from "./Title";
 import Typography from "./Typography";
+import Container from "./Container";
+import type { ImageProps } from "./Image";
+
+type LinkType = {
+  label?: string;
+  url?: string;
+}
 
 export interface HeroProps {
   title?: string;
   content?: string;
-  ctaButton?: {
-    label?: string;
-    url?: string;
-  };
-  ghostButton?: {
-    label?: string;
-    url?: string;
-  };
-  image?: {
-    src: string;
-    alt?: string;
-    width?: string | number;
-    height?: string | number;
-  }
+  ctaButton?: LinkType;
+  ghostButton?: LinkType;
+  image?: ImageProps;
 }
 
 export default function Hero({
@@ -30,8 +26,14 @@ export default function Hero({
   image
 }: HeroProps) {
   return (
-    <div className="grid grid-cols-5 w-full h-86">
-      <div className="flex flex-col justify-center gap-16 h-full col-span-3">
+    <div
+      className="w-full h-180 bg-stone-300"
+      style={{
+        backgroundImage: `url(${image?.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}>
+      <Container className="flex flex-col justify-center gap-16 h-full col-span-3">
         <div className="space-y-4">
           {title && (
             <Title size="xl">{title}</Title>
@@ -48,8 +50,7 @@ export default function Hero({
             <Button label={ghostButton?.label ?? "Button"} variant="ghost" />
           </Link>)}
         </div>
-      </div>
-      <div></div>
+      </Container>
     </div>
   );
 }

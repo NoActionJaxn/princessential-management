@@ -1,9 +1,9 @@
 import Hero from "~/components/Hero";
 import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Princessential Management" },
+    { title: "Princessential Management - Home" },
     { name: "description", content: "Where creators reign." },
   ];
 }
@@ -11,7 +11,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <div>
-      <Hero 
+      <Hero
         title="Hero Section"
         content="Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."
         ctaButton={{

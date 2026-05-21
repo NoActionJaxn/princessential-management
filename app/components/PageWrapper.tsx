@@ -6,7 +6,7 @@ export interface PageWrapperProps {
 
 export default function PageWrapper({children}: PageWrapperProps) {
   return (
-    <main className="flex flex-col mx-auto container min-h-screen overflow-hidden">
+    <main className="flex flex-col w-screen min-h-screen overflow-hidden">
       {children}
     </main>
   )
