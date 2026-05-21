@@ -27,7 +27,7 @@ export default function Hero({
 }: HeroProps) {
   return (
     <div
-      className="w-full h-180 bg-stone-300"
+      className="w-full md:h-180 h-132 md:pt-0 pt-42 bg-stone-300"
       style={{
         backgroundImage: `url(${image?.src})`,
         backgroundSize: "cover",
@@ -42,13 +42,17 @@ export default function Hero({
             <Typography size="sm">{content}</Typography>
           )}
         </div>
-        <div className="space-x-4">
-          {ctaButton && (<Link to={ctaButton?.url ?? "#"}>
-            <Button label={ctaButton?.label ?? "Button"} variant="default" />
-          </Link>)}
-          {ghostButton && (<Link to={ghostButton?.url ?? "#"}>
-            <Button label={ghostButton?.label ?? "Button"} variant="ghost" />
-          </Link>)}
+        <div className="flex items-center space-x-4">
+          {ctaButton && (
+            <Link to={ctaButton?.url ?? "#"} className="md:w-auto w-full">
+              <Button className="w-full" label={ctaButton?.label ?? "Button"} variant="default" />
+            </Link>
+          )}
+          {ghostButton && (
+            <Link to={ghostButton?.url ?? "#"} className="md:w-auto w-full">
+              <Button className="w-full" label={ghostButton?.label ?? "Button"} variant="ghost" />
+            </Link>
+          )}
         </div>
       </Container>
     </div>
