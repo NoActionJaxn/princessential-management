@@ -4,6 +4,7 @@ import TrustBar from "~/components/TrustBar";
 import Container from "~/components/Container";
 import SwiperCarousel from "~/components/SwiperCarousel";
 import ContentBlock from "~/components/ContentBlock";
+import MoreInfoBlock from "~/components/MoreInfoBlock";
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -116,6 +117,16 @@ export default function Home() {
           images={images}
         />
       </Container>
+      <div className="bg-pink-300">
+        <MoreInfoBlock
+          title="Content Block"
+          content="Lorem ipsum dolor sit amet consectetur adipiscing elit. Amet consectetur adipiscing elit quisque faucibus ex sapien. Quisque faucibus ex sapien vitae pellentesque sem placerat. Vitae pellentesque sem placerat in id cursus mi."
+          ctaButton={{
+            label: "Continue",
+            url: "#",
+          }}
+        />
+      </div>
     </div>
   );
 }

@@ -5,36 +5,28 @@ import Title from "./Title";
 import Typography from "./Typography";
 import Button from "./Button";
 
-export interface ContentBlockProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MoreInfoBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
-  subtitle?: string;
   content?: string;
   ctaButton?: {
     label?: string;
     url?: string;
   };
-  reverse?: boolean;
 }
 
-export default function ContentBlock({
+export default function MoreInfoBlock({
   title,
-  subtitle,
   content,
   ctaButton,
   className,
-  reverse = false,
   ...rest
-}: ContentBlockProps) {
+}: MoreInfoBlockProps) {
   return (
     <Container
-      className={classNames("py-28 space-y-12", className)}
+      className={classNames("py-28 space-y-12 text-center", className)}
       {...rest}>
-      <div className={classNames("space-y-2", {
-        "text-right": reverse,
-        "text-left": !reverse,
-      })}>
+      <div className="space-y-2">
         {title && <Title level="h2" size="lg">{title}</Title>}
-        {subtitle && <Title level="h3" size="md">{subtitle}</Title>}
       </div>
       {content && (
         <div>
@@ -42,10 +34,7 @@ export default function ContentBlock({
         </div>
       )}
       {ctaButton && (
-        <div className={classNames({
-          "text-right": !reverse,
-          "text-left": reverse,
-        })}>
+        <div>
           <Link to={ctaButton.url ?? ""}>
             <Button label={ctaButton.label} variant="default" />
           </Link>
@@ -55,4 +44,4 @@ export default function ContentBlock({
   );
 }
 
-ContentBlock.displayName = "ContentBlock";
+MoreInfoBlock.displayName = "MoreInfoBlock";
