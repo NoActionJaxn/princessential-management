@@ -11,3 +11,5 @@ export default function PageContent({children}: PageContentProps) {
     </article>
   )
 }
+
+PageContent.displayName = "PageContent";

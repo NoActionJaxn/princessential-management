@@ -11,3 +11,5 @@ export default function PageWrapper({children}: PageWrapperProps) {
     </main>
   )
 }
+
+PageWrapper.displayName = "PageWrapper";

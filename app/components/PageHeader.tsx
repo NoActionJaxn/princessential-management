@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { RoutesType } from "~/constants/routes";
+import type { RoutesType } from "~/types/route";
 
 export interface PageHeaderProps {
   routes?: RoutesType;
@@ -31,3 +31,5 @@ export default function PageHeader({ routes = {} }: PageHeaderProps) {
     </header>
   )
 }
+
+PageHeader.displayName = "PageHeader";

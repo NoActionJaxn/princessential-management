@@ -2,7 +2,7 @@
 
 # Intro
 
-Logo - Catch line
+Logo - Catch line - Hero
 Carousel Component
 Trust Bar - accolades like component
 

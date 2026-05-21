@@ -5,6 +5,9 @@
   --font-title: "Barlow", sans-serif;
   --font-subtitle: "Barlow Condensed", sans-serif;
   --font-sans: "Raleway", sans-serif;
+
+  --text-2xs: .75rem;
+  --text-3xs: .625rem;
 }
 
 html,

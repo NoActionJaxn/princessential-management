@@ -1,10 +1,10 @@
 import type { Social } from "~/types/socials";
 
 export interface PageFooterProps {
-  socials: Social[];
+  socials?: Social[];
 }
 
-export default function PageFooter({ socials }: PageFooterProps) {
+export default function PageFooter({ socials = [] }: PageFooterProps) {
   const year = new Date().getFullYear()
   return (
     <footer className="flex items-center justify-between h-18 p-4">

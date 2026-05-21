@@ -32,3 +32,5 @@ export default function PageLayout({ children }: LayoutProps) {
     </html>
   );
 }
+
+PageLayout.displayName = "PageLayout";
