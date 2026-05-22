@@ -88,15 +88,9 @@ export default function Contact() {
               control={control}
               rules={{ required: "Purpose is required" }}
               render={({ field }) => (
-                <SelectInput label="Purpose" options={purposeOptions} value={field.value} onChange={field.onChange} />
+                <SelectInput label="Purpose" options={purposeOptions} value={field.value} onChange={field.onChange} error={errors.purpose?.message} />
               )}
             />
-
-            {errors.purpose && (
-              <div className="sm:col-span-2">
-                <p className="text-sm text-red-600">{errors.purpose.message}</p>
-              </div>
-            )}
           </div>
         </div>
 
