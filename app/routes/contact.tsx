@@ -51,7 +51,7 @@ export default function Contact() {
 
   return (
     <div>
-      <Title level="h1" size="xl" className="text-center py-16">
+      <Title level="h1" size="xl" className="text-center pt-16 pb-5">
         Business Inquiries
       </Title>
       <div className="max-w-5xl mx-auto space-y-6">
