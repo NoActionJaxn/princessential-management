@@ -12,6 +12,7 @@ export interface MoreInfoBlockProps extends React.HTMLAttributes<HTMLDivElement>
     label?: string;
     url?: string;
   };
+  isDark?: boolean;
 }
 
 export default function MoreInfoBlock({
@@ -19,24 +20,26 @@ export default function MoreInfoBlock({
   content,
   ctaButton,
   className,
+  isDark,
   ...rest
 }: MoreInfoBlockProps) {
   return (
     <Container
       className={classNames("py-28 space-y-12 text-center", className)}
-      {...rest}>
+      {...rest}
+      data-dark={isDark}>
       <div className="space-y-2">
-        {title && <Title level="h2" size="lg">{title}</Title>}
+        {title && <Title level="h2" size="lg" className={classNames({ "text-stone-100!": isDark })}>{title}</Title>}
       </div>
       {content && (
         <div>
-          <Typography>{content}</Typography>
+          <Typography className={classNames({ "text-stone-100!": isDark })}>{content}</Typography>
         </div>
       )}
       {ctaButton && (
         <div>
           <Link to={ctaButton.url ?? ""}>
-            <Button label={ctaButton.label} variant="default" />
+            <Button label={ctaButton.label} variant="default" isDark={isDark} />
           </Link>
         </div>
       )}

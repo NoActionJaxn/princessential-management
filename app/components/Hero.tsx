@@ -4,6 +4,7 @@ import Title from "./Title";
 import Typography from "./Typography";
 import Container from "./Container";
 import type { ImageProps } from "./Image";
+import classNames from "classnames";
 
 type LinkType = {
   label?: string;
@@ -17,6 +18,7 @@ export interface HeroProps {
   ctaButton?: LinkType;
   ghostButton?: LinkType;
   image?: ImageProps;
+  isDark?: boolean;
 }
 
 export default function Hero({
@@ -25,37 +27,45 @@ export default function Hero({
   content,
   ctaButton,
   ghostButton,
-  image
+  image,
+  isDark = false,
 }: HeroProps) {
   return (
     <div
-      className="w-full md:h-180 h-132 md:pt-0 pt-42"
+      className="w-full md:h-180 h-138 md:pt-0 pt-48"
       style={{
         backgroundImage: `url(${image?.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center"
-      }}>
+      }}
+      data-dark={isDark}>
       <Container className="flex flex-col justify-center gap-16 h-full col-span-3">
         <div className="space-y-4">
           {title && (
-            <Title size="xl">{title}</Title>
+            <Title size="xl" className={classNames("text-shadow-2xs", { "text-stone-100!": isDark })}>
+              {title}
+            </Title>
           )}
           {subtitle && (
-            <Title size="sm">{subtitle}</Title>
+            <Title size="sm" className={classNames("text-shadow-xs", { "text-stone-400!": isDark })}>
+              {subtitle}
+            </Title>
           )}
           {content && (
-            <Typography size="sm">{content}</Typography>
+            <Typography size="sm" className={classNames("text-shadow-sm font-bold", { "text-stone-50!": isDark })}>
+              {content}
+            </Typography>
           )}
         </div>
         <div className="flex items-center space-x-4">
           {ctaButton && (
             <Link to={ctaButton?.url ?? "#"} className="md:w-auto w-full">
-              <Button className="w-full" label={ctaButton?.label ?? "Button"} variant="default" />
+              <Button className="w-full" label={ctaButton?.label ?? "Button"} variant="default" isDark={isDark} />
             </Link>
           )}
           {ghostButton && (
             <Link to={ghostButton?.url ?? "#"} className="md:w-auto w-full">
-              <Button className="w-full" label={ghostButton?.label ?? "Button"} variant="ghost" />
+              <Button className="w-full" label={ghostButton?.label ?? "Button"} variant="ghost" isDark={isDark} />
             </Link>
           )}
         </div>

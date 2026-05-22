@@ -32,7 +32,7 @@ export default function About() {
           {aboutPageData.title}
         </Title>
       )}
-      <div className="space-y-5 indent-8">
+      <div>
         <BlockRenderer content={aboutPageData.content} withStyles />
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { PortableText, type PortableTextBlock, type PortableTextComponents } from '@portabletext/react'
 import { Link } from 'react-router';
+import classNames from 'classnames';
 import Title from './Title';
 import Typography from './Typography';
 
@@ -43,7 +44,7 @@ export default function BlockRenderer({
   withStyles = false,
 }: BlockRendererProps) {
   return (
-    <div className={className}>
+    <div className={classNames("space-y-4", className)}>
       <PortableText value={content} components={withStyles ? styledComponents : {}} />
     </div>
   );

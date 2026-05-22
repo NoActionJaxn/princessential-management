@@ -8,7 +8,6 @@ import { fetchHomePageData } from "~/util/requests";
 import type { HomePageRequest } from "~/types/requests";
 import { useLoaderData } from "react-router";
 import { imageBuilder } from "~/util/imageBuilder";
-
 interface LoaderData {
   homePageData: HomePageRequest;
 }
@@ -28,9 +27,7 @@ export async function loader() {
 
 export default function Home() {
   const { homePageData } = useLoaderData<LoaderData>();
-
   console.log("homePageData", homePageData);
-
   return (
     <div>
       <Hero
@@ -49,6 +46,7 @@ export default function Home() {
           label: homePageData.heroBlock.ghostButton.text,
           url: homePageData.heroBlock.ghostButton.url,
         }}
+        isDark={homePageData.heroBlock.dark}
       />
       <TrustBar
         images={
@@ -73,20 +71,28 @@ export default function Home() {
           />
         </div>
       ))}
-      <SwiperCarousel
-        title={homePageData.carouselBlock.title}
-        images={[]}
-      />
-      <div className="bg-pink-300">
-        <MoreInfoBlock
-          title={homePageData.carouselBlock.footNoteBlock.title}
-          content={homePageData.carouselBlock.footNoteBlock.content}
-          ctaButton={{
-            label: homePageData.carouselBlock.footNoteBlock.callToAction.text,
-            url: homePageData.carouselBlock.footNoteBlock.callToAction.url,
-          }}
+      {homePageData.carouselBlock && homePageData.carouselBlock.images.length && (
+        <SwiperCarousel
+          title={homePageData.carouselBlock.title}
+          images={homePageData.carouselBlock.images.map((image) => ({
+            src: image.image.asset ? imageBuilder(image.image.asset).url() : "",
+            alt: image.altText ?? "Image",
+          }))}
         />
-      </div>
+      )}
+      {homePageData.footNoteBlock && (
+        <div className="bg-stone-900">
+          <MoreInfoBlock
+            title={homePageData.footNoteBlock.title}
+            content={homePageData.footNoteBlock.content}
+            ctaButton={{
+              label: homePageData.footNoteBlock.callToAction.text,
+              url: homePageData.footNoteBlock.callToAction.url,
+            }}
+            isDark
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -74,7 +74,7 @@ export default function Contact() {
       )}
       {contactPageData.content && (
         <div className="max-w-5xl mx-auto">
-          <BlockRenderer content={contactPageData.content} />
+          <BlockRenderer content={contactPageData.content} withStyles />
         </div>
       )}
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto space-y-6 p-4 mt-16">

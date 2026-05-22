@@ -12,7 +12,7 @@ export default function SwiperCarousel({ title, images = [] }: SwiperCarouselPro
 
 
   return (
-    <div className="relative">
+    <div className="relative" data-dark>
       <div className="absolute top-12 left-0 right-0 text-center z-10">
         {title && (
           <Title level="h2" size="md" className="text-white opacity-90 text-shadow-lg">
@@ -24,7 +24,7 @@ export default function SwiperCarousel({ title, images = [] }: SwiperCarouselPro
         modules={[Pagination, Navigation]}
         spaceBetween={0}
         slidesPerView={1}
-        className="carousel-swiper max-h-screen w-full aspect-video bg-stone-900"
+        className="carousel-swiper max-h-180 w-full aspect-video bg-stone-900"
         pagination={{ clickable: true }}
         navigation
       >

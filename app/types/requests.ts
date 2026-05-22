@@ -12,6 +12,8 @@ export interface HomePageRequest {
   sponsorsBlock: Sponsor[];
   contentBlocks: ContentBlock[];
   carouselBlock: CarouselBlock;
+  footNoteBlock: FootNoteBlock;
+  seo: Seo;
 }
 
 export interface HeroBlock {
@@ -21,13 +23,12 @@ export interface HeroBlock {
   backgroundImage: ImageReference;
   callToAction: CallToAction;
   ghostButton: CallToAction;
+  dark: boolean;
 }
 
 export interface CarouselBlock {
   title: string;
   images: ImageBlock[];
-  footNoteBlock: FootNoteBlock;
-  seo: Seo;
 }
 
 export interface FootNoteBlock {
@@ -90,6 +91,7 @@ export interface ContentBlock {
   content: string;
   color: Color;
   callToAction: CallToAction;
+  dark: boolean;
 }
 
 export interface Color {
