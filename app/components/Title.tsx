@@ -18,9 +18,9 @@ const Title = forwardRef<HTMLHeadingElement, TitleProps>(
       {
         ref,
         className: classNames({
-          "text-xl md:text-2xl lg:text-3xl font-title text-stone-900": size === "xs",
-          "text-2xl md:text-3xl lg:text-4xl font-subtitle text-stone-900": size === "sm",
-          "text-3xl md:text-4xl lg:text-5xl font-subtitle text-stone-900": size === "md",
+          "text-xl md:text-2xl lg:text-3xl font-subtitle text-stone-700": size === "xs",
+          "text-2xl md:text-3xl lg:text-4xl font-subtitle text-stone-700": size === "sm",
+          "text-3xl md:text-4xl lg:text-5xl font-semibold font-title text-stone-00": size === "md",
           "text-4xl md:text-5xl lg:text-6xl font-semibold font-title text-stone-900": size === "lg",
           "text-5xl md:text-6xl lg:text-7xl font-semibold font-title text-stone-900 ": size === "xl",
         }, className),

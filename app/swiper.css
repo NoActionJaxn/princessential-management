@@ -1,0 +1,20 @@
+.swiper {
+  --swiper-pagination-color: #fff;          /* active dot */
+  --swiper-pagination-bullet-inactive-color: #222;  /* inactive dots */
+  --swiper-pagination-bullet-inactive-opacity: 1;   /* inactive opacity (default 0.2) */
+  --swiper-navigation-color: #fff;          /* arrow color */
+  --swiper-navigation-size: 30px;              /* arrow size */
+}
+
+.carousel-swiper .swiper-button-prev {
+  left: 20px;  /* default is 10px */
+}
+
+.carousel-swiper .swiper-button-next {
+  right: 20px;  /* default is 10px */
+}
+
+.carousel-swiper .swiper-pagination {
+  opacity: .6;
+  bottom: 30px;  /* default is 8px */
+}

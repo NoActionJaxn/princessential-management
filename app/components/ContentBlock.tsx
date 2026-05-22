@@ -34,7 +34,7 @@ export default function ContentBlock({
         "text-left": !reverse,
       })}>
         {title && <Title level="h2" size="lg">{title}</Title>}
-        {subtitle && <Title level="h3" size="md">{subtitle}</Title>}
+        {subtitle && <Title level="h3" size="sm">{subtitle}</Title>}
       </div>
       {content && (
         <div>

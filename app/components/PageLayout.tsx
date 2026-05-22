@@ -6,6 +6,8 @@ import PageWrapper from "./PageWrapper";
 import { ROUTES } from "~/constants/routes";
 
 import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 export interface LayoutProps {
   children?: React.ReactNode;

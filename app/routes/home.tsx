@@ -1,7 +1,6 @@
 import Hero from "~/components/Hero";
 import type { Route } from "./+types/home";
 import TrustBar from "~/components/TrustBar";
-import Container from "~/components/Container";
 import SwiperCarousel from "~/components/SwiperCarousel";
 import ContentBlock from "~/components/ContentBlock";
 import MoreInfoBlock from "~/components/MoreInfoBlock";
@@ -77,6 +76,7 @@ export default function Home() {
     <div>
       <Hero
         title="Hero Section"
+        subtitle="Lorem ipsum dolor sit amet consectetur adipiscing elit."
         content="Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus."
         ctaButton={{
           label: "Continue",
@@ -108,15 +108,12 @@ export default function Home() {
             label: "Continue",
             url: "#",
           }}
-          reverse
         />
       </div>
-      <Container>
-        <SwiperCarousel
-          title="Swiper Carousel"
-          images={images}
-        />
-      </Container>
+      <SwiperCarousel
+        title="Swiper Carousel"
+        images={images}
+      />
       <div className="bg-pink-300">
         <MoreInfoBlock
           title="Content Block"

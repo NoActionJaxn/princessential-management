@@ -12,6 +12,7 @@ type LinkType = {
 
 export interface HeroProps {
   title?: string;
+  subtitle?: string;
   content?: string;
   ctaButton?: LinkType;
   ghostButton?: LinkType;
@@ -20,6 +21,7 @@ export interface HeroProps {
 
 export default function Hero({
   title,
+  subtitle,
   content,
   ctaButton,
   ghostButton,
@@ -27,7 +29,7 @@ export default function Hero({
 }: HeroProps) {
   return (
     <div
-      className="w-full md:h-180 h-132 md:pt-0 pt-42 bg-stone-300"
+      className="w-full md:h-180 h-132 md:pt-0 pt-42"
       style={{
         backgroundImage: `url(${image?.src})`,
         backgroundSize: "cover",
@@ -37,6 +39,9 @@ export default function Hero({
         <div className="space-y-4">
           {title && (
             <Title size="xl">{title}</Title>
+          )}
+          {subtitle && (
+            <Title size="sm">{subtitle}</Title>
           )}
           {content && (
             <Typography size="sm">{content}</Typography>

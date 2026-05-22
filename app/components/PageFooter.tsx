@@ -8,7 +8,7 @@ export interface PageFooterProps {
 export default function PageFooter({ socials = [] }: PageFooterProps) {
   const year = new Date().getFullYear()
   return (
-    <footer>
+    <footer className="bg-stone-900 text-stone-300">
       <Container className="flex items-center justify-between h-18 p-4">
         <div>
           <span className="uppercase text-xs">Princessential Management {year}</span>
