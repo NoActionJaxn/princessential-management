@@ -1,18 +1,20 @@
 import Image from "~/components/Image";
 import type { ImageProps } from "./Image";
 import Title from "./Title";
-import Typography from "./Typography";
 import Button from "./Button";
 import { Link } from "react-router";
+import type { PortableTextBlock } from "@portabletext/react";
+import BlockRenderer from "./BlockRenderer";
 
 export interface RosterCardProps {
   name: string;
   role: string;
-  description: string;
+  description: PortableTextBlock[];
   image: ImageProps;
+  url?: string;
 }
 
-export default function RosterCard({ name, role, description, image }: RosterCardProps) {
+export default function RosterCard({ name, role, description, image, url }: RosterCardProps) {
   return (
     <div className="overflow-hidden rounded-md border border-stone-900">
       <div className="w-full h-64 aspect-video">
@@ -31,15 +33,15 @@ export default function RosterCard({ name, role, description, image }: RosterCar
         <Title level="h4" size="sm">
           {role}
         </Title>
-        <Typography className="line-clamp-4 mb-2">
-          {description}
-        </Typography>
+        <BlockRenderer content={description} withStyles />
       </div>
-      <div className="p-4">
-        <Link to="#" className="w-full">
-          <Button className="w-full" label="Learn More" />
-        </Link>
-      </div>
+      {url && (
+        <div className="p-4">
+          <Link to={url} className="w-full">
+            <Button className="w-full" label="Learn More" />
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

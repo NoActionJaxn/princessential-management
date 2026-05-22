@@ -5,6 +5,14 @@ import SelectInput from "~/components/SelectInput";
 import Button from "~/components/Button";
 import Title from "~/components/Title";
 import Typography from "~/components/Typography";
+import type { ContactPageRequest } from "~/types/requests";
+import { fetchContactPageData } from "~/util/requests";
+import { useLoaderData } from "react-router";
+import BlockRenderer from "~/components/BlockRenderer";
+
+interface LoaderData {
+  contactPageData: ContactPageRequest;
+}
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -37,7 +45,15 @@ const purposeOptions = [
   { value: "other", label: "Other" },
 ];
 
+export async function loader() {
+  const contactPageData = await fetchContactPageData();
+
+  return { contactPageData };
+}
+
 export default function Contact() {
+  const { contactPageData } = useLoaderData<LoaderData>();
+
   const { register, control, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({
     defaultValues: { event: "", purpose: "" }
   });
@@ -51,17 +67,16 @@ export default function Contact() {
 
   return (
     <div>
-      <Title level="h1" size="xl" className="text-center pt-16 pb-5">
-        Business Inquiries
-      </Title>
-      <div className="max-w-5xl mx-auto space-y-6">
-        <Typography>
-          We would love to hear from you! Whether you have a question about our services, want to discuss a potential collaboration, or just want to say hello, feel free to reach out. Our team is here to assist you and will get back to you as soon as possible.
-        </Typography>
-        <Typography>
-          Please fill out the form below with your contact information and message, and we will be in touch shortly. Thank you for considering Princessential Management!
-        </Typography>
-      </div>
+      {contactPageData.title && (
+        <Title level="h1" size="xl" className="text-center pt-16 pb-5">
+          {contactPageData.title}
+        </Title>
+      )}
+      {contactPageData.content && (
+        <div className="max-w-5xl mx-auto">
+          <BlockRenderer content={contactPageData.content} />
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-5xl mx-auto space-y-6 p-4 mt-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
           <TextInput label="Name" {...register("name", { required: "Name is required" })} error={errors.name?.message} />

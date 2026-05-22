@@ -1,27 +1,54 @@
+import type { PortableTextBlock } from "@portabletext/react";
+
 export interface HomePageRequest {
   _createdAt: string;
   _id: string;
   _originalId: string;
   _rev: string;
-  _system: Record<string, unknown>;
-  base: Record<string, unknown>;
-  id: string;
-  rev: string;
   _type: "homePage";
   _updatedAt: string;
-  carouselBlock: Record<string, unknown>;
-  footNoteBlock: Record<string, unknown>;
-  callToAction: CallToAction;
-  text: string;
-  url: string;
+  pageTitle: string;
+  heroBlock: HeroBlock;
+  sponsorsBlock: Sponsor[];
+  contentBlocks: ContentBlock[];
+  carouselBlock: CarouselBlock;
+}
+
+export interface HeroBlock {
+  title: string;
+  subtitle: string;
   content: string;
+  backgroundImage: ImageReference;
+  callToAction: CallToAction;
+  ghostButton: CallToAction;
+}
+
+export interface CarouselBlock {
   title: string;
   images: ImageBlock[];
+  footNoteBlock: FootNoteBlock;
   seo: Seo;
-  contentBlocks: ContentBlock[];
-  heroBlock: HeroBlock;
-  pageTitle: string;
-  sponsorsBlock: Sponsor[];
+}
+
+export interface FootNoteBlock {
+  title: string;
+  content: string;
+  callToAction: CallToAction;
+}
+
+export interface ImageBlock {
+  _key?: string;
+  _type?: "imageBlock";
+  image: ImageReference;
+  altText: string;
+}
+
+export interface Sponsor {
+  _key?: string;
+  _type?: "sponsor";
+  image: ImageReference;
+  url: string;
+  altText: string;
 }
 
 export interface CallToAction {
@@ -29,15 +56,8 @@ export interface CallToAction {
   url: string;
 }
 
-export interface ImageBlock {
-  _key: string;
-  _type: "imageBlock";
-  altText: string;
-  image: ImageReference;
-}
-
 export interface ImageReference {
-  _type: "image";
+  _type?: "image";
   asset: ReferenceAsset;
 }
 
@@ -47,56 +67,42 @@ export interface ReferenceAsset {
 }
 
 export interface Seo {
-  _type: "seo";
-  metaAuthor: string;
-  metaCharset: string;
-  metaDescription: string;
-  metaLanguage: string;
-  metaRobots: string;
+  _type?: "seo";
   metaTitle: string;
+  metaDescription: string;
+  metaAuthor: string;
   metaViewport: string;
-  structuredData?: Record<string, unknown>;
-  type: "website";
+  metaCharset: string;
+  metaLanguage: string;
+  metaKeywords?: string[];
+  metaImage?: ImageReference;
+  metaRobots: string;
+  canonicalURL?: string;
+  structuredData?: string;
+  type: "website" | "article" | "profile";
 }
 
 export interface ContentBlock {
-  _key: string;
-  _type: "contentBlock";
-  callToAction: CallToAction;
-  color: Color;
-  content: string;
-  subtitle: string;
+  _key?: string;
+  _type?: "contentBlock";
   title: string;
+  subtitle: string;
+  content: string;
+  color: Color;
+  callToAction: CallToAction;
 }
 
 export interface Color {
-  _type: "color";
-  alpha: number;
+  _type?: "color";
   hex: string;
-  hsl: ColorChannel;
-  hsv: ColorChannel;
-  rgb: ColorChannel;
+  rgb?: ColorChannel;
+  hsl?: ColorChannel;
+  hsv?: ColorChannel;
+  alpha?: number;
 }
 
 export interface ColorChannel {
   [key: string]: number | string;
-}
-
-export interface HeroBlock {
-  backgroundImage: ImageReference;
-  callToAction: CallToAction;
-  content: string;
-  ghostButton: CallToAction;
-  subtitle: string;
-  title: string;
-}
-
-export interface Sponsor {
-  _key: string;
-  _type: "sponsor";
-  altText: string;
-  image: ImageReference;
-  url: string;
 }
 
 export interface AboutPageRequest {
@@ -164,14 +170,6 @@ export interface TalentRequest {
 export interface Slug {
   _type: "slug";
   current: string;
-}
-
-export interface PortableTextBlock {
-  _key: string;
-  _type: "block";
-  children: BlockChild[];
-  markDefs: unknown[];
-  style: string;
 }
 
 export interface BlockChild {

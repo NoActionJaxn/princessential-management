@@ -41,7 +41,7 @@ export default function TrustBar({ images = [] }: TrustBarProps) {
                 {(image.url) ? (
                   <Link to={image.url ?? "#"} className="inline-flex h-full w-full items-center justify-center">
                     <Image
-                      className="h-full w-auto object-contain"
+                      className="h-24 w-auto object-contain"
                       width={image.width}
                       height={image.height}
                       src={image.src}

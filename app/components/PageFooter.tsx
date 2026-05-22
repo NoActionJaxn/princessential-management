@@ -11,7 +11,7 @@ export default function PageFooter({ socials = [] }: PageFooterProps) {
     <footer className="bg-stone-900 text-stone-300">
       <Container className="flex items-center justify-between h-18 p-4">
         <div>
-          <span className="uppercase text-xs">Princessential Management {year}</span>
+          <span className="uppercase text-xs font-subtitle">Princessential Management {year}</span>
         </div>
         <div>
           {/* TODO: Add social links*/}

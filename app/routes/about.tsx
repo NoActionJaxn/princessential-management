@@ -1,6 +1,13 @@
 import Title from "~/components/Title";
 import type { Route } from "./+types/about";
-import Typography from "~/components/Typography";
+import type { AboutPageRequest } from "~/types/requests";
+import { fetchAboutPageData } from "~/util/requests";
+import { useLoaderData } from "react-router";
+import BlockRenderer from "~/components/BlockRenderer";
+
+interface LoaderData {
+  aboutPageData: AboutPageRequest;
+}
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -9,22 +16,24 @@ export function meta({ }: Route.MetaArgs) {
   ];
 }
 
+export async function loader() {
+  const aboutPageData = await fetchAboutPageData();
+
+  return { aboutPageData };
+}
+
 export default function About() {
+  const { aboutPageData } = useLoaderData<LoaderData>();
+
   return (
     <div>
-      <Title level="h1" size="xl" className="text-center pt-16 pb-5">
-        Who We Are
-      </Title>
+      {aboutPageData.title && (
+        <Title level="h1" size="xl" className="text-center pt-16 pb-5">
+          {aboutPageData.title}
+        </Title>
+      )}
       <div className="space-y-5 indent-8">
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-        </Typography>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-        </Typography>
-        <Typography>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-        </Typography>
+        <BlockRenderer content={aboutPageData.content} withStyles />
       </div>
     </div>
   );

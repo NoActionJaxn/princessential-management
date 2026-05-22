@@ -15,10 +15,10 @@ function getEnv(key: string): string {
   return importMeta?.[viteKey] ?? importMeta?.[key] ?? "";
 }
 
-const projectId = getEnv("PROJECT_ID");
-const dataset = getEnv("DATASET");
-const apiVersion = getEnv("API_VERSION");
-const useCdn = getEnv("USE_CDN") === "true";
+const projectId = getEnv("VITE_PROJECT_ID");
+const dataset = getEnv("VITE_DATASET");
+const apiVersion = getEnv("VITE_API_VERSION");
+const useCdn = getEnv("VITE_USE_CDN") === "true";
 
 export const client = createClient({
   projectId,
