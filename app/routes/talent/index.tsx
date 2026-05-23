@@ -1,23 +1,20 @@
 import Title from "~/components/Title";
 import Typography from "~/components/Typography";
-import type { Route } from "../+types/talent";
 import RosterCard from "~/components/RosterCard";
 import type { TalentPageRequest, TalentRequest } from "~/types/requests";
 import { fetchTalentPageData, fetchAllTalentData } from "~/util/requests";
 import { useLoaderData } from "react-router";
 import BlockRenderer from "~/components/BlockRenderer";
 import { imageBuilder } from "~/util/imageBuilder";
+import { defaultSeo, metaFromSeo } from "~/util/seo";
 
 interface LoaderData {
   talentPageData: TalentPageRequest;
   talentsData: TalentRequest[];
 }
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Princessential Management - Talent" },
-    { name: "description", content: "Explore opportunities with Princessential Management." },
-  ];
+export function meta({ data }: { data?: LoaderData }) {
+  return metaFromSeo(data?.talentPageData?.seo ?? defaultSeo);
 }
 
 export async function loader() {

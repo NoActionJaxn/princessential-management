@@ -1,4 +1,3 @@
-import type { Route } from "./+types/contact";
 import { useForm, Controller } from "react-hook-form";
 import TextInput from "~/components/TextInput";
 import SelectInput from "~/components/SelectInput";
@@ -9,16 +8,14 @@ import type { ContactPageRequest } from "~/types/requests";
 import { fetchContactPageData } from "~/util/requests";
 import { useLoaderData } from "react-router";
 import BlockRenderer from "~/components/BlockRenderer";
+import { defaultSeo, metaFromSeo } from "~/util/seo";
 
 interface LoaderData {
   contactPageData: ContactPageRequest;
 }
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Princessential Management - Contact" },
-    { name: "description", content: "Get in touch with us." },
-  ];
+export function meta({ data }: { data?: LoaderData }) {
+  return metaFromSeo(data?.contactPageData?.seo ?? defaultSeo);
 }
 
 type FormValues = {

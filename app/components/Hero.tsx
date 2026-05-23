@@ -47,7 +47,7 @@ export default function Hero({
             </Title>
           )}
           {subtitle && (
-            <Title size="sm" className={classNames("text-shadow-xs", { "text-stone-400!": isDark })}>
+            <Title level="h2" size="sm" className={classNames("text-shadow-xs", { "text-stone-400!": isDark })}>
               {subtitle}
             </Title>
           )}

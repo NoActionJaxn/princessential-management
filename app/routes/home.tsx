@@ -1,5 +1,4 @@
 import Hero from "~/components/Hero";
-import type { Route } from "./+types/home";
 import TrustBar from "~/components/TrustBar";
 import SwiperCarousel from "~/components/SwiperCarousel";
 import ContentBlock from "~/components/ContentBlock";
@@ -8,15 +7,13 @@ import { fetchHomePageData } from "~/util/requests";
 import type { HomePageRequest } from "~/types/requests";
 import { useLoaderData } from "react-router";
 import { imageBuilder } from "~/util/imageBuilder";
+import { defaultSeo, metaFromSeo } from "~/util/seo";
 interface LoaderData {
   homePageData: HomePageRequest;
 }
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Princessential Management - Home" },
-    { name: "description", content: "Where creators reign." },
-  ];
+export function meta({ data }: { data?: LoaderData }) {
+  return metaFromSeo(data?.homePageData?.seo ?? defaultSeo);
 }
 
 export async function loader() {
@@ -27,7 +24,7 @@ export async function loader() {
 
 export default function Home() {
   const { homePageData } = useLoaderData<LoaderData>();
-  console.log("homePageData", homePageData);
+
   return (
     <div>
       <Hero

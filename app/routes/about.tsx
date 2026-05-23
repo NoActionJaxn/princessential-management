@@ -3,19 +3,16 @@ import { fetchAboutPageData } from "~/util/requests";
 import { useLoaderData } from "react-router";
 import BlockRenderer from "~/components/BlockRenderer";
 import Image from "~/components/Image";
-import type { Route } from "./+types/about";
 import type { AboutPageRequest } from "~/types/requests";
 import { imageBuilder } from "~/util/imageBuilder";
+import { defaultSeo, metaFromSeo } from "~/util/seo";
 
 interface LoaderData {
   aboutPageData: AboutPageRequest;
 }
 
-export function meta({ }: Route.MetaArgs) {
-  return [
-    { title: "Princessential Management - About" },
-    { name: "description", content: "Who We Are." },
-  ];
+export function meta({ data }: { data?: LoaderData }) {
+  return metaFromSeo(data?.aboutPageData?.seo ?? defaultSeo);
 }
 
 export async function loader() {
