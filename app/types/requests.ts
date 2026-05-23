@@ -122,6 +122,7 @@ export interface AboutPageRequest {
   pageTitle: string;
   seo: Seo;
   title: string;
+  image: ImageReference;
 }
 
 export interface ContactPageRequest {

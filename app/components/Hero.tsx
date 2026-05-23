@@ -52,7 +52,7 @@ export default function Hero({
             </Title>
           )}
           {content && (
-            <Typography size="sm" className={classNames("text-shadow-sm font-bold", { "text-stone-50!": isDark })}>
+            <Typography className={classNames("text-shadow-sm font-bold", { "text-stone-50!": isDark })}>
               {content}
             </Typography>
           )}

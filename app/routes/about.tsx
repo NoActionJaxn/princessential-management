@@ -1,9 +1,11 @@
 import Title from "~/components/Title";
-import type { Route } from "./+types/about";
-import type { AboutPageRequest } from "~/types/requests";
 import { fetchAboutPageData } from "~/util/requests";
 import { useLoaderData } from "react-router";
 import BlockRenderer from "~/components/BlockRenderer";
+import Image from "~/components/Image";
+import type { Route } from "./+types/about";
+import type { AboutPageRequest } from "~/types/requests";
+import { imageBuilder } from "~/util/imageBuilder";
 
 interface LoaderData {
   aboutPageData: AboutPageRequest;
@@ -26,15 +28,24 @@ export default function About() {
   const { aboutPageData } = useLoaderData<LoaderData>();
 
   return (
-    <div>
+    <div className="w-full max-w-5xl mx-auto px-4 space-y-8">
       {aboutPageData.title && (
-        <Title level="h1" size="xl" className="text-center pt-16 pb-5">
+        <Title level="h1" size="xl" className="text-center pt-16">
           {aboutPageData.title}
         </Title>
       )}
-      <div>
-        <BlockRenderer content={aboutPageData.content} withStyles />
-      </div>
+      {aboutPageData.image && (
+        <Image
+          src={imageBuilder(aboutPageData.image).width(1200).url()}
+          alt={"About Us"}
+          className="max-w-2xl w-full h-auto mx-auto"
+        />
+      )}
+      {aboutPageData.content && (
+        <div>
+          <BlockRenderer content={aboutPageData.content} withStyles />
+        </div>
+      )}
     </div>
   );
 }

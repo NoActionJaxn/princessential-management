@@ -33,7 +33,7 @@ export default function RosterCard({ name, role, description, image, url }: Rost
         <Title level="h4" size="sm">
           {role}
         </Title>
-        <BlockRenderer content={description} withStyles />
+        <BlockRenderer content={description} className="line-clamp-4" withStyles />
       </div>
       {url && (
         <div className="p-4">
