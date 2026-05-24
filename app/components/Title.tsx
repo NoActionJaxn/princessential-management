@@ -11,7 +11,7 @@ export interface TitleProps extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 const Title = forwardRef<HTMLHeadingElement, TitleProps>(
-  ({ children, level = "h1", size, className, ...rest }, ref) => {
+  ({ children, level = "h1", size = "md", className, ...rest }, ref) => {
 
     return createElement(
       level,
