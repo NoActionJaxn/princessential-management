@@ -18,7 +18,7 @@ export interface LayoutProps {
 
 export default function PageLayout({ children, socials }: LayoutProps) {
   const flushRoutes = ["/"];
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const isFlush = flushRoutes.includes(pathname);
 
   return (
@@ -29,6 +29,7 @@ export default function PageLayout({ children, socials }: LayoutProps) {
         <Meta />
         <Links />
         <script src="https://kit.fontawesome.com/1aad4926f4.js" crossOrigin="anonymous"></script>
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
       </head>
       <body>
         <Analytics />

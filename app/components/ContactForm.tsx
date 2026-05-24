@@ -8,6 +8,8 @@ import { useState } from "react";
 import Typography from "./Typography";
 import Title from "./Title";
 
+const VITE_TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+
 const eventOptions = [
   { value: "none", label: "None" },
   { value: "conference", label: "Conference" },
@@ -60,7 +62,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
 
   if (formState === "success") {
     return (
-    <div className="py-8 text-center space-y-4">
+      <div className="py-8 text-center space-y-4">
         <Title level="h2">
           Thank you for reaching out!
         </Title>
@@ -69,7 +71,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           <Button label="Start Over" onClick={() => setFormState("idle")} />
         </div>
       </div>
-  );
+    );
   }
 
   if (formState === "error") {
@@ -136,6 +138,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       </div>
 
       <div className="space-x-4">
+        <div className="cf-turnstile" data-sitekey={VITE_TURNSTILE_SITE_KEY}></div>
         <Button type="submit" label="Submit" />
         <Button type="button" variant="ghost" label="Reset" onClick={() => reset()} />
       </div>

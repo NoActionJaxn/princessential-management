@@ -11,6 +11,7 @@ interface LoaderData {
 }
 
 export const links: LinksFunction = () => [
+  { rel: "preconnect", href: "https://challenges.cloudflare.com" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
