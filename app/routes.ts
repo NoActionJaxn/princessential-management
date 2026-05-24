@@ -6,4 +6,5 @@ export default [
   route("talent", "routes/talent/index.tsx"),
   route("talent/:slug", "routes/talent/$slug.tsx"),
   route("contact", "routes/contact.tsx"),
+  route("/api/sanity", "routes/api.sanity.ts"),
 ] satisfies RouteConfig;

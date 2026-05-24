@@ -17,7 +17,7 @@ export default function PageHeader({ routes = {} }: PageHeaderProps) {
   const { isOverDark, isScrolled } = useIsOverDark({ ref: containerRef });
 
   return (
-    <header ref={containerRef} className={classNames("fixed top-0 left-0 right-0 z-10 transition-colors", isScrolled ? "bg-stone-100/60 backdrop-blur-sm shadow-md" : "bg-transparent")} data-dark>
+    <header ref={containerRef} className={classNames("fixed top-0 left-0 right-0 z-40 transition-colors", isScrolled ? "bg-stone-100/60 backdrop-blur-sm shadow-md" : "bg-transparent")} data-dark>
       <Container className="flex md:flex-row flex-col justify-between h-auto px-4 pb-4">
         <div className="h-16 pt-4">
           <Link to="/" className="inline-flex h-full items-center">

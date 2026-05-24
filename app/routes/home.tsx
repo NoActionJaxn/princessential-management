@@ -60,7 +60,7 @@ export default function Home() {
             }))}
         />)}
       {homePageData.contentBlocks.map((block) => (
-        <div key={block._key} style={{ backgroundColor: block.color.hex }}>
+        <div key={block._key} style={{ backgroundColor: block.color.hex ?? "transparent" }}>
           <ContentBlock
             title={block.title}
             subtitle={block.subtitle}

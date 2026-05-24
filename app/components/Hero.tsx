@@ -32,7 +32,7 @@ export default function Hero({
 }: HeroProps) {
   return (
     <div
-      className="w-full md:h-180 h-138 md:pt-0 pt-48"
+      className="w-full md:h-180 h-160 md:pt-0 pt-48"
       style={{
         backgroundImage: `url(${image?.src})`,
         backgroundSize: "cover",

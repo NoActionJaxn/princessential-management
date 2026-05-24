@@ -1,5 +1,5 @@
 import type { ContactPageRequest, AboutPageRequest, HomePageRequest, TalentRequest, TalentPageRequest, SocialRequest } from "~/types/requests";
-import { client } from "./client";
+import { getSanityClient } from "./client";
 
 export function handleRequestError<T>(context: string) {
   return (err: unknown): T | null => {
@@ -9,6 +9,8 @@ export function handleRequestError<T>(context: string) {
 }
 
 export async function fetchHomePageData() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "homePage" && _id == "homePage"][0]{
       ...
@@ -18,6 +20,8 @@ export async function fetchHomePageData() {
 };
 
 export async function fetchAboutPageData() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "aboutPage" && _id == "aboutPage"][0]{
       ...
@@ -27,6 +31,8 @@ export async function fetchAboutPageData() {
 };
 
 export async function fetchContactPageData() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "contactPage" && _id == "contactPage"][0]{
       ...
@@ -36,6 +42,8 @@ export async function fetchContactPageData() {
 };
 
 export async function fetchTalentPageData() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "talentPage" && _id == "talentPage"][0]{
       ...
@@ -45,6 +53,8 @@ export async function fetchTalentPageData() {
 };
 
 export async function fetchAllTalentData() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "talent"]{
       ...
@@ -54,6 +64,8 @@ export async function fetchAllTalentData() {
 }
 
 export async function fetchTalentBySlug(slug: string) {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "talent" && slug.current == $slug][0]{
       ...
@@ -63,6 +75,8 @@ export async function fetchTalentBySlug(slug: string) {
 } 
 
 export async function fetchSocials() {
+  const client = getSanityClient();
+
   const request = `
     *[_type == "socials"]{
       ...

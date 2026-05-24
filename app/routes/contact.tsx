@@ -3,7 +3,6 @@ import TextInput from "~/components/TextInput";
 import SelectInput from "~/components/SelectInput";
 import Button from "~/components/Button";
 import Title from "~/components/Title";
-import Typography from "~/components/Typography";
 import type { ContactPageRequest } from "~/types/requests";
 import { fetchContactPageData } from "~/util/requests";
 import { useLoaderData } from "react-router";
@@ -55,11 +54,25 @@ export default function Contact() {
     defaultValues: { event: "", purpose: "" }
   });
 
-  const onSubmit = (data: FormValues) => {
-    // submission not needed yet - placeholder
-    // keep client-side only for now; SSR-compatible (no window usage)
-    // eslint-disable-next-line no-console
-    console.log("contact form", data);
+  const onSubmit = async (data: FormValues) => {
+
+    const res = await fetch("/api/sanity", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        _type: "contact",
+        ...data,
+      }),
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("Contact form submitted successfully, document ID:", result.id);
+      reset();
+    } else {
+      console.error(result.error);
+    }
   };
 
   return (

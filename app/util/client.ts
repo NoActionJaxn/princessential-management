@@ -1,28 +1,43 @@
 import { createClient } from "@sanity/client";
 
-function getEnv(key: string): string {
-  // In SSR, process.env is available; in client bundles, Vite inlines VITE_ vars
-  if (typeof process !== "undefined" && process.env[key]) {
-    return process.env[key] as string;
-  }
-  // Fallback to VITE_ prefixed for backward compat during dev
-  const viteKey = `VITE_${key}`;
-  if (typeof process !== "undefined" && process.env[viteKey]) {
-    return process.env[viteKey] as string;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const importMeta = (import.meta as any).env;
-  return importMeta?.[viteKey] ?? importMeta?.[key] ?? "";
+const apiVersion = import.meta.env.VITE_SANITY_API_VERSION ?? "2026-05-23";
+
+interface SanityClientOptions {
+  token?: string;
+  useCdn?: boolean;
 }
 
-const projectId = getEnv("VITE_PROJECT_ID");
-const dataset = getEnv("VITE_DATASET");
-const apiVersion = getEnv("VITE_API_VERSION");
-const useCdn = getEnv("VITE_USE_CDN") === "true";
+export function validateEnvVar(name: string, value: unknown) {
+  if (typeof value !== "string" || value.trim() === "") {
+    throw new Error(
+      `Invalid Sanity config: ${name} is missing. Set it in your env (e.g., .env.local).`,
+    );
+  }
+  const isValid = /^[a-z0-9-]+$/.test(value);
+  if (!isValid) {
+    throw new Error(
+      `Invalid Sanity config: ${name} must match /^[a-z0-9-]+$/. Received: "${value}"`,
+    );
+  }
+  return value;
+}
 
-export const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn,
-});
+export function getSanityClient(opts?: SanityClientOptions) {
+  const hasToken = Boolean(opts?.token);
+
+  const projectId = validateEnvVar(
+    "VITE_SANITY_PROJECT_ID",
+    import.meta.env.VITE_SANITY_PROJECT_ID,
+  );
+
+  const dataset = validateEnvVar("VITE_SANITY_DATASET", import.meta.env.VITE_SANITY_DATASET);
+
+  return createClient({
+    projectId,
+    dataset,
+    apiVersion,
+    useCdn: opts?.useCdn ?? !hasToken,
+    token: opts?.token,
+    perspective: hasToken ? "drafts" : "published",
+  });
+}
