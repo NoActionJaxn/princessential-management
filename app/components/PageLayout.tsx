@@ -1,4 +1,5 @@
 import { Meta, Links, ScrollRestoration, Scripts, useLocation } from "react-router";
+import { Analytics } from '@vercel/analytics/react';
 import PageHeader from "./PageHeader";
 import PageContent from "./PageContent";
 import PageFooter from "./PageFooter";
@@ -30,6 +31,7 @@ export default function PageLayout({ children, socials }: LayoutProps) {
         <script src="https://kit.fontawesome.com/1aad4926f4.js" crossOrigin="anonymous"></script>
       </head>
       <body>
+        <Analytics />
         <PageWrapper>
           <PageHeader routes={ROUTES} />
           <PageContent flush={isFlush}>
