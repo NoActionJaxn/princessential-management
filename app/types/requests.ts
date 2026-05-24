@@ -181,3 +181,16 @@ export interface BlockChild {
   text: string;
   marks: string[];
 }
+
+export interface SocialRequest {
+  _createdAt?: string;
+  _id: string;
+  _rev: string;
+  _updatedAt?: string;
+  _type?: "social";
+  label: string;
+  url: string;
+  faIcon: string;
+  faIconType: 'fa-brands' | 'fa-solid' | 'fa-regular' | 'fa-light' | 'fa-duotone';
+}
+

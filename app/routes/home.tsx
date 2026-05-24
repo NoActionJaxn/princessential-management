@@ -1,13 +1,14 @@
+import { useLoaderData } from "react-router";
 import Hero from "~/components/Hero";
 import TrustBar from "~/components/TrustBar";
 import SwiperCarousel from "~/components/SwiperCarousel";
 import ContentBlock from "~/components/ContentBlock";
 import MoreInfoBlock from "~/components/MoreInfoBlock";
 import { fetchHomePageData } from "~/util/requests";
-import type { HomePageRequest } from "~/types/requests";
-import { useLoaderData } from "react-router";
 import { imageBuilder } from "~/util/imageBuilder";
 import { defaultSeo, metaFromSeo } from "~/util/seo";
+import type { HomePageRequest } from "~/types/requests";
+
 interface LoaderData {
   homePageData: HomePageRequest;
 }
@@ -27,34 +28,37 @@ export default function Home() {
 
   return (
     <div>
-      <Hero
-        title={homePageData.heroBlock.title}
-        subtitle={homePageData.heroBlock.subtitle}
-        content={homePageData.heroBlock.content}
-        image={{
-          src: imageBuilder(homePageData.heroBlock.backgroundImage.asset).url(),
-          alt: homePageData.heroBlock.title,
-        }}
-        ctaButton={{
-          label: homePageData.heroBlock.callToAction.text,
-          url: homePageData.heroBlock.callToAction.url,
-        }}
-        ghostButton={{
-          label: homePageData.heroBlock.ghostButton.text,
-          url: homePageData.heroBlock.ghostButton.url,
-        }}
-        isDark={homePageData.heroBlock.dark}
-      />
-      <TrustBar
-        images={
-          homePageData.sponsorsBlock.map((sponsor) => ({
-            src: imageBuilder(sponsor.image.asset).url(),
-            alt: sponsor.altText,
-            url: sponsor.url,
-            width: 200,
-            height: 200,
-          }))} />
-
+      {homePageData.heroBlock && (
+        <Hero
+          title={homePageData.heroBlock.title}
+          subtitle={homePageData.heroBlock.subtitle}
+          content={homePageData.heroBlock.content}
+          image={{
+            src: imageBuilder(homePageData.heroBlock.backgroundImage.asset).url(),
+            alt: homePageData.heroBlock.title,
+          }}
+          ctaButton={{
+            label: homePageData.heroBlock.callToAction.text,
+            url: homePageData.heroBlock.callToAction.url,
+          }}
+          ghostButton={{
+            label: homePageData.heroBlock.ghostButton.text,
+            url: homePageData.heroBlock.ghostButton.url,
+          }}
+          isDark={homePageData.heroBlock.dark}
+        />
+      )}
+      {homePageData.sponsorsBlock && (
+        <TrustBar
+          images={
+            homePageData.sponsorsBlock.map((sponsor) => ({
+              src: imageBuilder(sponsor.image.asset).url(),
+              alt: sponsor.altText,
+              url: sponsor.url,
+              width: 200,
+              height: 200,
+            }))}
+        />)}
       {homePageData.contentBlocks.map((block) => (
         <div key={block._key} style={{ backgroundColor: block.color.hex }}>
           <ContentBlock

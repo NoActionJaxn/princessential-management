@@ -1,4 +1,4 @@
-import type { ContactPageRequest, AboutPageRequest, HomePageRequest, TalentRequest, TalentPageRequest } from "~/types/requests";
+import type { ContactPageRequest, AboutPageRequest, HomePageRequest, TalentRequest, TalentPageRequest, SocialRequest } from "~/types/requests";
 import { client } from "./client";
 
 export function handleRequestError<T>(context: string) {
@@ -61,3 +61,12 @@ export async function fetchTalentBySlug(slug: string) {
   `;
   return await client.fetch<TalentRequest>(request, { slug }).catch(handleRequestError);
 } 
+
+export async function fetchSocials() {
+  const request = `
+    *[_type == "socials"]{
+      ...
+    }
+  `;
+  return await client.fetch<SocialRequest[]>(request).catch(handleRequestError);
+}

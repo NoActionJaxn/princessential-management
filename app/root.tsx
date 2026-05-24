@@ -1,7 +1,14 @@
-import { isRouteErrorResponse, Outlet } from "react-router";
+import { isRouteErrorResponse, Outlet, useLoaderData } from "react-router";
 import type { LinksFunction } from "react-router";
 import PageLayout from "./components/PageLayout";
 import "./app.css";
+import { fetchSocials } from "./util/requests";
+import type { SocialRequest } from "./types/requests";
+import type { Social } from "./types/socials";
+
+interface LoaderData {
+  socialNetworkData: SocialRequest[];
+}
 
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -16,8 +23,24 @@ export const links: LinksFunction = () => [
   },
 ];
 
+export async function loader() {
+  const socialNetworkData = await fetchSocials();
+
+  return { socialNetworkData };
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
-  return <PageLayout>{children}</PageLayout>;
+  const {socialNetworkData} = useLoaderData<LoaderData>();
+
+  const socials: Social[] = socialNetworkData.map((social) => ({
+    key: social._id,
+    label: social.label,
+    url: social.url,
+    faIcon: social.faIcon,
+    faPackage: social.faIconType,
+  }));
+  
+  return <PageLayout socials={socials}>{children}</PageLayout>;
 }
 
 export default function App() {
