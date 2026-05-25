@@ -53,21 +53,21 @@ export default function Home() {
           images={
             homePageData.sponsorsBlock.map((sponsor) => ({
               src: imageBuilder(sponsor.image.asset).url(),
-              alt: sponsor.altText,
-              url: sponsor.url,
+              alt: sponsor?.altText ?? "",
+              url: sponsor?.url ?? "",
               width: 200,
               height: 200,
             }))}
         />)}
       {homePageData.contentBlocks.map((block) => (
-        <div key={block._key} style={{ backgroundColor: block.color.hex ?? "transparent" }}>
+        <div key={block._key} style={{ backgroundColor: block.color?.hex ?? "transparent" }}>
           <ContentBlock
             title={block.title}
             subtitle={block.subtitle}
             content={block.content}
             ctaButton={{
-              label: block.callToAction.text,
-              url: block.callToAction.url,
+              label: block.callToAction?.text ?? "",
+              url: block.callToAction?.url ?? "",
             }}
           />
         </div>
