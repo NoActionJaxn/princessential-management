@@ -9,6 +9,7 @@ export interface HomePageRequest {
   _updatedAt: string;
   pageTitle: string;
   heroBlock: HeroBlock;
+  sponsorsTitle: string;
   sponsorsBlock: Sponsor[];
   contentBlocks: ContentBlock[];
   carouselBlock: CarouselBlock;

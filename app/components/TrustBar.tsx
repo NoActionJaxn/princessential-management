@@ -11,16 +11,17 @@ export interface ImageWithUrl extends ImageProps {
 }
 
 export interface TrustBarProps {
+  title?: string;
   images?: ImageWithUrl[];
 }
 
-export default function TrustBar({ images = [] }: TrustBarProps) {
+export default function TrustBar({ title = "", images = [] }: TrustBarProps) {
   return (
     <div className="bg-amber-300 h-auto pt-8 pb-20" id="trust-bar">
       <Container className="flex flex-col justify-center h-full overflow-visible">
         <div>
           <Title level="h2" size="xs" className="text-center mb-8">
-            Trusted by leading brands
+            {title}
           </Title>
         </div>
         <div>

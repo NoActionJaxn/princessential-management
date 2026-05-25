@@ -50,6 +50,7 @@ export default function Home() {
       )}
       {homePageData.sponsorsBlock && (
         <TrustBar
+          title={homePageData.sponsorsTitle}
           images={
             homePageData.sponsorsBlock.map((sponsor) => ({
               src: imageBuilder(sponsor.image.asset).url(),
